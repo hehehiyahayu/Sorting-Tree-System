@@ -1,51 +1,13 @@
 #include <iostream>
+#include "Header.h"
 
 using namespace std;
 
-struct node{
-  int data;
-  struct node* left;
-  struct node* right;
-};
-
-// void insertNode(node ** binary_tree, int value){
-//   node* tmp;
-//   if(!(*binary_tree)){
-//     tmp = (node*)malloc(sizeof(node));
-//     tmp->left = tmp->right = NULL;
-//     tmp->data = value;
-//     *binary_tree = tmp;
-//     return;
-//   }
-//   if(value < (*binary_tree)->data){
-//     insertNode
-//   }
-// }
-
-struct node* newNode(int value){
-  struct node* tmp = (struct node*)malloc(sizeof(struct node));
-  tmp->data = value;
-  tmp->left = tmp->right = NULL;
-  return tmp;
-}
-
-struct node* insertNode(struct node* srcnode, int value){
-  if(srcnode == NULL) return newNode(value);
-
-  if(srcnode->data > value){
-    srcnode->left = insertNode(srcnode->left, value);
-  }else if(srcnode->data < value){
-    srcnode->right = insertNode(srcnode->right, value);
-  }
-
-  return srcnode;
-}
-
-void printNode(struct node* root_node){
+void PrintNode(struct node* root_node){
   if(root_node != NULL){
-    printNode(root_node->left);
+    PrintNode(root_node->left);
     cout << root_node->data << endl;
-    printNode(root_node->right);
+    PrintNode(root_node->right);
   }
 }
 
@@ -70,5 +32,5 @@ int main(){
    }
  }
 
- printNode(root_node);
+ PrintNode(root_node);
 }
