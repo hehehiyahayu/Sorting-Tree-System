@@ -72,3 +72,10 @@
 // 
 //}
 //
+//void PrintNode(struct node* root_node){
+//  if(root_node != NULL){
+//    PrintNode(root_node->left);
+//    cout << root_node->data << endl;
+//    PrintNode(root_node->right);
+//  }
+//}

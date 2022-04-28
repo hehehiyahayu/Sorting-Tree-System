@@ -3,22 +3,44 @@
 
 using namespace std;
 
+void printTab(int numTab){
+	for(int i = 0; i < numTab; i++){
+		cout << "\t";
+	}
+}
 
-void PrintNode(struct node* root_node){
-  if(root_node != NULL){
-    PrintNode(root_node->left);
-    cout << root_node->data << endl;
-    PrintNode(root_node->right);
-  }
+void processPrint(node* root, int level){
+	if(root == NULL){
+		printTab(level);
+		cout << "---<empty>---" << endl;
+		return;
+	}
+	printTab(level);
+	cout << "value = " << root->data << endl;
+
+	printTab(level);
+	cout << "left" << endl;
+	processPrint(root->left, level + 1);
+
+	printTab(level);
+	cout << "right" << endl;
+	processPrint(root->right, level + 1);
+
+	printTab(level);
+	cout << "done" << endl;
+}
+
+void printTree(node* root){
+	processPrint(root, 0);
 }
 
 void DelNode(struct node* root_node){
   if (root_node == NULL) return;
- 
+
     /* first delete both subtrees */
     DelNode(root_node->left);
     DelNode(root_node->right);
-     
+
     /* then delete the node */
     cout << "\n Deleting node: " << root_node->data<<endl;
     delete root_node;
@@ -41,11 +63,11 @@ int main(){
  cout << "-------- \n";
  cout << " 1. Insert \n";
  cout << " 2. Delete \n";
- cout << " Data :  ";
- PrintNode(root_node); 
+ cout << " Tree Data :  " << endl << endl;
+ printTree(root_node);
  cout << "\n\n Your Choice : ";
  cin >> inputuser;
- 
+
  if(inputuser == 1){
  	while(data != 100){
    	cout << "Data : ";
@@ -69,6 +91,5 @@ int main(){
  	cout << "Invalid Input, Please Retry...\n";
  	main();
  }
- 
-}
 
+}

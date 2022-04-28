@@ -39,7 +39,7 @@ struct node* insertNode(struct node* srcnode, int value){
   return srcnode;
 }
 
-void PrintNode(struct node* root_node);
+//void PrintNode(struct node* root_node);
 void DelNode(struct node* root_node);
 int Menu();
 
