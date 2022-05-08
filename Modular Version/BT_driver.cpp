@@ -63,4 +63,3 @@ struct node* insertNode(struct node* srcnode, int value){
   }
   return srcnode;
 }
-

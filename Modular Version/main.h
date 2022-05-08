@@ -1,5 +1,5 @@
-#ifndef Main_H
-#define Main_H
+#ifndef Main_System_H
+#define Main_System_H
 
 struct node{
 	int data;
