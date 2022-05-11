@@ -10,8 +10,13 @@ struct node{
 void printTab(int numTab);
 void processPrint(node* root, int level);
 void printTree(node* root);
-void DelNode(struct node* root_node);
+void DelTree(struct node* root_node);
 struct node* newNode(int value);
 struct node* insertNode(struct node* srcnode, int value);
+//struct node* search(int PilihanNode);
+void printArray(int arr[], int n);
+void heapify(int arr[], int n, int i) ;
+void heapSort(int arr[], int n);
+void swap(int *a, int *b);
 
 #endif
