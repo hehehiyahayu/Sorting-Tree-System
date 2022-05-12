@@ -4,10 +4,6 @@
 #include <windows.h>
 using namespace std;
 
-void setcolor(unsigned short color){
-	HANDLE hCon = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(hCon,color);
-}
 
 void menu_list(){
 	cout << "------------\n";
@@ -28,7 +24,7 @@ void menu_utama(){
 	int count = 0;
 	int arr[count];		
 
-	BackMenu:	
+	BackMenu:
 	menu_list();
 	printTree(root_node);
 	cout << "\n\nYour Choice : ";		
@@ -55,15 +51,16 @@ void menu_utama(){
 		cout << "TREE CLEARED !! \n" << endl;
 		setcolor(7);		
 		data = NULL;
-		menu_utama();
+		menu_utama();						
+		
 	}else if(input_user == 3){
-//		system("CLS");
-//		DelNode(root_node);
-//		data = NULL;
-//		cout << data << endl;
-//		menu_utama();
-		cout << "Jalan" << endl;
-	}else if(input_user == 4){
+		system("cls");
+		fflush(stdin);
+		cout << "Data : ";
+		cin >> data;
+		root_node = deleteNode(root_node, data);
+		goto BackMenu;
+	}else if(input_user == 5){
 //		  int n = sizeof(arr) / sizeof(arr[0]);
 		  heapSort(arr, count);
 		  printf("MIN HEAP SORT : ");
@@ -72,8 +69,7 @@ void menu_utama(){
 		system("CLS");
 		setcolor(4);
 		cout << "Invalid Input, Please Retry...\n";
-		setcolor(7);
-		menu_utama();
-		printArray(arr, count);
+		setcolor(7);				
+		
 	}
 }

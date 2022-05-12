@@ -1,5 +1,6 @@
 #include <iostream>
 #include "BT_driver.h"
+#include <windows.h>
 #include <stdio.h>
 
 using namespace std;
@@ -86,8 +87,6 @@ struct node* insertNode(struct node* srcnode, int value){
 }
 
 
-
-
 // Function to swap the the position of two elements
 void swap(int *a, int *b) {
 
@@ -114,17 +113,11 @@ void heapify(int arr[], int n, int i) {
     largest = left;
 
   if (right < n && arr[right] > arr[largest])
-
     largest = right;
-
   // Swap and continue heapifying if root is not largest
-
   if (largest != i) {
-
     swap(&arr[i], &arr[largest]);
-
     heapify(arr, n, largest);
-
   }
 
 }
@@ -132,23 +125,14 @@ void heapify(int arr[], int n, int i) {
 // Main function to do heap sort
 
 void heapSort(int arr[], int n) {
-
   // Build max heap
-
   for (int i = n / 2 - 1; i >= 0; i--)
-
     heapify(arr, n, i);
-
   // Heap sort
-
   for (int i = n - 1; i >= 0; i--) {
-
     swap(&arr[0], &arr[i]);
-
     // Heapify root element to get highest element at root again
-
     heapify(arr, i, 0);
-
   }
 
 }
@@ -165,6 +149,46 @@ void printArray(int arr[], int count) {
 
 }
 
+struct node* minValueNode(struct node* node){
+	struct node* current = node;
+	
+	while(current && current->left != NULL){
+		current = current->left;
+	}
+	
+	return current;
+}
 
+struct node* deleteNode(struct node* root, int key){
+	if(root == NULL) return root;
+	
+	if(key < root->data){
+		root->left = deleteNode(root->left, key);
+	}else if(key > root->data){
+		root->right = deleteNode(root->right, key);
+	}else {
+		if(root->left == NULL){
+			struct node* temp = root->right;
+			free(root);
+			return temp;
+		}else if(root->right == NULL){
+			struct node* temp = root->left;
+			free(root);
+			return temp;
+		}
+		
+		struct node* temp = minValueNode(root->right);
+		
+		root->data = temp->data;
+		
+		root->right = deleteNode(root->right, temp->data);
+	}	
+	return root;
+}
+
+void setcolor(unsigned short color){
+	HANDLE hCon = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hCon,color);
+}
 
 

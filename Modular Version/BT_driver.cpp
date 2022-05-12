@@ -1,5 +1,7 @@
 #include <iostream>
 #include "BT_driver.h"
+#include <windows.h>
+#include <stdio.h>
 
 using namespace std;
 
@@ -34,15 +36,14 @@ void printTree(node* root){
 	processPrint(root, 0);
 }
 
-void DelNode(struct node* root_node){
+void DelTree(struct node* root_node){
   if (root_node == NULL) return;
 
     /* first delete both subtrees */
-    DelNode(root_node->left);
-    DelNode(root_node->right);
-
+    DelTree(root_node->left);
+    DelTree(root_node->right);
     /* then delete the node */
-    cout << "\n Deleting node: " << root_node->data<<endl;
+//    cout << "\n Deleting node: " << root_node->data<<endl;
     delete root_node;
 }
 
@@ -63,3 +64,99 @@ struct node* insertNode(struct node* srcnode, int value){
   }
   return srcnode;
 }
+
+
+// Function to swap the the position of two elements
+void swap(int *a, int *b) {
+
+  int temp = *a;
+
+  *a = *b;
+
+  *b = temp;
+}
+void heapify(int arr[], int n, int i) {
+  // Find largest among root, left child and right child
+  int largest = i;
+  int left = 2 * i + 1;
+  int right = 2 * i + 2;
+  if (left < n && arr[left] > arr[largest])
+    largest = left;
+  if (right < n && arr[right] > arr[largest])
+    largest = right;
+  // Swap and continue heapifying if root is not largest
+  if (largest != i) {
+    swap(&arr[i], &arr[largest]);
+    heapify(arr, n, largest);
+  }
+}
+
+// Main function to do heap sort
+
+void heapSort(int arr[], int n) {
+  // Build max heap
+  for (int i = n / 2 - 1; i >= 0; i--)
+    heapify(arr, n, i);
+  // Heap sort
+  for (int i = n - 1; i >= 0; i--) {
+    swap(&arr[0], &arr[i]);
+    // Heapify root element to get highest element at root again
+    heapify(arr, i, 0);
+  }
+
+}
+
+//for printing the array
+
+void printArray(int arr[], int count) {
+
+  for (int i = 0; i < count; i++)
+	
+    printf("%d ", arr[i]);
+
+  printf("\n");
+
+}
+
+struct node* minValueNode(struct node* node){
+	struct node* current = node;
+	
+	while(current && current->left != NULL){
+		current = current->left;
+	}	
+	return current;
+}
+
+struct node* deleteNode(struct node* root, int key){
+	if(root == NULL) return root;
+	
+	if(key < root->data){
+		root->left = deleteNode(root->left, key);
+	}else if(key > root->data){
+		root->right = deleteNode(root->right, key);
+	}else {
+		if(root->left == NULL){
+			struct node* temp = root->right;
+			free(root);
+			return temp;
+		}else if(root->right == NULL){
+			struct node* temp = root->left;
+			free(root);
+			return temp;
+		}
+		
+		struct node* temp = minValueNode(root->right);
+		
+		root->data = temp->data;
+		
+		root->right = deleteNode(root->right, temp->data);
+	}	
+	return root;
+}
+
+void setcolor(unsigned short color){
+	HANDLE hCon = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hCon,color);
+}
+
+
