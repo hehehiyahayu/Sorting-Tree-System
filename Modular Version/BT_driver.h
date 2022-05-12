@@ -1,11 +1,11 @@
 #ifndef BT_Process_h
 #define BT_Process_h
 
-struct node{
-	int data;
-	struct node* left;
-	struct node* right;
-};
+//struct node{
+//	int data;
+//	struct node* left;
+//	struct node* right;
+//};
 
 void printTab(int numTab);
 void processPrint(node* root, int level);
