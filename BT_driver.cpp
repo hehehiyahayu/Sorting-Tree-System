@@ -75,7 +75,7 @@ void swap(int *a, int *b) {
 
   *b = temp;
 }
-void heapify(int arr[], int n, int i) {
+void heapifyAscending(int arr[], int n, int i) {
   // Find largest among root, left child and right child
   int largest = i;
   int left = 2 * i + 1;
@@ -87,32 +87,87 @@ void heapify(int arr[], int n, int i) {
   // Swap and continue heapifying if root is not largest
   if (largest != i) {
     swap(&arr[i], &arr[largest]);
-    heapify(arr, n, largest);
+    heapifyAscending(arr, n, largest);
   }
 }
 
 // Main function to do heap sort
 
-void heapSort(int arr[], int n) {
+void heapSortAscending(int arr[], int n) {
   // Build max heap
   for (int i = n / 2 - 1; i >= 0; i--)
-    heapify(arr, n, i);
+    heapifyAscending(arr, n, i);
   // Heap sort
   for (int i = n - 1; i >= 0; i--) {
     swap(&arr[0], &arr[i]);
     // Heapify root element to get highest element at root again
-    heapify(arr, i, 0);
+    heapifyAscending(arr, i, 0);
   }
 
 }
+
+void DeleteArray(int arr[],int data,int count){	
+	 for(int i=0;i<count;i++){
+	    	if(arr[i] == data){			        
+				        for(int c = i; c < count-1; c++)
+				        arr[c] = arr[c+1];		
+					    printf("\n\nResultant array is: ");
+					    for(int c = 0; c < count-1; c++) 
+					        printf("%d  ", arr[c]);
+			}else{
+				printf("");			
+			}
+		}       
+}
+
+void heapifyDesending(int arr[], int n, int i){
+    int smallest = i; // Initialize smalles as root
+    int l = 2 * i + 1; // left = 2*i + 1
+    int r = 2 * i + 2; // right = 2*i + 2
+ 
+    // If left child is smaller than root
+    if (l < n && arr[l] < arr[smallest])
+        smallest = l;
+ 
+    // If right child is smaller than smallest so far
+    if (r < n && arr[r] < arr[smallest])
+        smallest = r;
+ 
+    // If smallest is not root
+    if (smallest != i) {
+        swap(arr[i], arr[smallest]);
+ 
+        // Recursively heapify the affected sub-tree
+        heapifyDesending(arr, n, smallest);
+    }
+}
+
+void heapSortDesending(int arr[], int n)
+{
+    // Build heap (rearrange array)
+    for (int i = n / 2 - 1; i >= 0; i--)
+        heapifyDesending(arr, n, i);
+ 
+    // One by one extract an element from heap
+    for (int i = n - 1; i >= 0; i--) {
+        // Move current root to end
+        swap(arr[0], arr[i]);
+ 
+        // call min heapify on the reduced heap
+        heapifyDesending(arr, i, 0);
+    }
+}
+ 
+
+
 
 //for printing the array
 
 void printArray(int arr[], int count) {
 
-  for (int i = 0; i < count; i++)
-	
-    printf("%d ", arr[i]);
+  for (int i = 0; i < count; i++){
+  	printf("%d ", arr[i]);
+  }
 
   printf("\n");
 
