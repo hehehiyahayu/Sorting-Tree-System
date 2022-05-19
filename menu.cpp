@@ -25,8 +25,14 @@ void menu_utama(){
 	int data = 0;
 	int inp;
 	int count = 0; //jumlah total array
+<<<<<<< HEAD
 	int arr[100];		//array
 
+=======
+	int *arr;		//array
+	arr = (int *) malloc(count);
+	
+>>>>>>> Diaz
 	BackMenu:
 	menu_list();
 	printTree(root_node);
@@ -40,8 +46,7 @@ void menu_utama(){
 			  setcolor(2);
 			  printf("MAX HEAP SORT : ");
 			  printArray(arr, count);
-			  setcolor(7);
-			  
+			  setcolor(7);			  
 	cout << "\n\nYour Choice : ";		
 	scanf("%d",&inp);
 //	fflush(stdin);
@@ -51,8 +56,10 @@ void menu_utama(){
  			while(data != 100){
 			cout << "Data : ";
 			cin >> data ;
-			arr[count] = data;			
 			count++;
+			arr = (int *) realloc(arr, count);
+			arr[count-1] = data;			
+			
 			if(root_node == NULL){
 				root_node = insertNode(root_node, data);
 			}else{
@@ -104,7 +111,11 @@ void menu_utama(){
 			  goto BackMenu;
 			  break;
 		case 6:
+<<<<<<< HEAD
 			cout << "Data : ";
+=======
+		cout << "Data : ";
+>>>>>>> Diaz
 			cin >> data;
 			if(checkNode(root_node, data)){
 				setcolor(2);

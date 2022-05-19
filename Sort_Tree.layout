@@ -1,4 +1,5 @@
 [Editor_0]
+<<<<<<< HEAD
 CursorCol=20
 CursorRow=1
 TopLine=1
@@ -10,19 +11,42 @@ Focused=4
 CursorCol=1
 CursorRow=109
 TopLine=32
+=======
+CursorCol=1
+CursorRow=9
+TopLine=1
+LeftChar=1
+[Editors]
+Order=0,2,1,4,3
+Focused=1
+[Editor_1]
+CursorCol=7
+CursorRow=108
+TopLine=96
+>>>>>>> Diaz
 LeftChar=1
 [Editor_2]
 CursorCol=1
-CursorRow=13
+CursorRow=9
 TopLine=1
 LeftChar=1
 [Editor_3]
-CursorCol=1
-CursorRow=174
-TopLine=153
+CursorCol=48
+<<<<<<< HEAD
+CursorRow=118
+TopLine=106
 LeftChar=1
 [Editor_4]
 CursorCol=6
 CursorRow=24
 TopLine=1
+=======
+CursorRow=217
+TopLine=205
+LeftChar=1
+[Editor_4]
+CursorCol=39
+CursorRow=20
+TopLine=7
+>>>>>>> Diaz
 LeftChar=1

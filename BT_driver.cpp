@@ -106,7 +106,8 @@ void heapSortAscending(int arr[], int n) {
 
 }
 
-void DeleteArray(int arr[],int data,int count){	
+void DeleteArray(int *arr,int data,int count){
+		int *arr_tmp;		
 	 for(int i=0;i<count;i++){
 	    	if(arr[i] == data){			        
 				        for(int c = i; c < count-1; c++)
@@ -114,6 +115,7 @@ void DeleteArray(int arr[],int data,int count){
 					    printf("\n\nResultant array is: ");
 					    for(int c = 0; c < count-1; c++) 
 					        printf("%d  ", arr[c]);
+					        arr = (int *) realloc(arr, count);
 			}else{
 				printf("");			
 			}
@@ -163,7 +165,7 @@ void heapSortDesending(int arr[], int n)
 
 //for printing the array
 
-void printArray(int arr[], int count) {
+void printArray(int *arr, int count) {
 
   for (int i = 0; i < count; i++){
   	printf("%d ", arr[i]);
@@ -229,4 +231,17 @@ void setcolor(unsigned short color){
 	SetConsoleTextAttribute(hCon,color);
 }
 
+bool checkNode(struct node *root, int key){
+	if(root == NULL) return false;
+	
+	if(root->data == key) return true;
+	
+	bool res1 = checkNode(root->left, key);
+	
+	if(res1) return true;
+	
+	bool res2 = checkNode(root->right, key);
+	
+	return res2;
+}
 
