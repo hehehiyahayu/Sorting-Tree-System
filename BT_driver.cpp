@@ -209,6 +209,21 @@ struct node* deleteNode(struct node* root, int key){
 	return root;
 }
 
+
+bool checkNode(struct node *root, int key){
+	if(root == NULL) return false;
+	
+	if(root->data == key) return true;
+	
+	bool res1 = checkNode(root->left, key);
+	
+	if(res1) return true;
+	
+	bool res2 = checkNode(root->right, key);
+	
+	return res2;
+}
+
 void setcolor(unsigned short color){
 	HANDLE hCon = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hCon,color);
