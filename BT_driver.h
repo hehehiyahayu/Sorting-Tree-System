@@ -20,12 +20,9 @@ void heapSortAscending(int arr[], int n);
 void heapSortDesending(int arr[], int n);
 void heapifyDesending(int arr[], int n, int i);
 void swap(int *a, int *b);
-<<<<<<< HEAD
-void DeleteArray(int arr[],int data,int count);
-bool checkNode(struct node *root, int key);
-=======
+
 void DeleteArray(int *arr,int data,int count);
->>>>>>> Diaz
+
 
 struct node* deleteNode(struct node* root, int key);
 struct node* minValueNode(struct node* node);

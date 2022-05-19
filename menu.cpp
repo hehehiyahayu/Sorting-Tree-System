@@ -25,17 +25,14 @@ void menu_utama(){
 	int data = 0;
 	int inp;
 	int count = 0; //jumlah total array
-<<<<<<< HEAD
-	int arr[100];		//array
 
-=======
 	int *arr;		//array
 	arr = (int *) malloc(count);
 	
->>>>>>> Diaz
 	BackMenu:
 	menu_list();
 	printTree(root_node);
+	cout << endl;
 //	fflush(stdin); 
 			  heapSortAscending(arr, count);
 			  setcolor(2);
@@ -52,21 +49,37 @@ void menu_utama(){
 //	fflush(stdin);
  	switch(inp){
  		case 1:
- 			printf("%d",count);
+// 			printf("%d",count);
  			while(data != 100){
 			cout << "Data : ";
-			cin >> data ;
+			cin >> data ;				
+			if(checkNode(root_node, data)){
+				setcolor(4);
+				cout << "Data sudah ada di dalam tree" << endl;
+				setcolor(7);
+				system("pause");
+				system("cls");
+				goto BackMenu;
+			}else if(data == 0){
+				setcolor(4);
+				cout << "Data tidak boleh 0" << endl;
+				setcolor(7);
+				system("pause");
+				system("cls");
+				fflush(stdin);
+				goto BackMenu;
+			}else{
 			count++;
 			arr = (int *) realloc(arr, count);
-			arr[count-1] = data;			
-			
-			if(root_node == NULL){
-				root_node = insertNode(root_node, data);
-			}else{
-				insertNode(root_node, data);
+			arr[count-1] = data;		
+				if(root_node == NULL){
+					root_node = insertNode(root_node, data);
+				}else{
+					insertNode(root_node, data);
+				}
+				system("CLS");
+				goto BackMenu;
 			}
-			system("CLS");
-			goto BackMenu;
 		}
 			break;
 		case 2 :
@@ -77,19 +90,28 @@ void menu_utama(){
 			data = NULL;
 			menu_utama();
 			break;
-		case 3:
-//			fflush(stdin);
+		case 3:	
 			cout << "Data : ";
 			cin >> data;
-			root_node = deleteNode(root_node, data);
-			DeleteArray(arr,data,count);
-//			system("cls");
-			system("pause");
-			setcolor(2);		
-			cout << "DELETE NODE " << endl;
-			setcolor(7);	
-			goto BackMenu;
-			break;
+			if(checkNode(root_node, data)){
+				root_node = deleteNode(root_node, data);
+				DeleteArray(arr,data,count);
+	//			system("cls");
+				system("pause");
+				setcolor(2);		
+				cout << "DELETE NODE " << endl;
+				setcolor(7);	
+				goto BackMenu;
+				break;
+			}else{
+				setcolor(4);
+				cout << "Data tidak ada di dalam tree" << endl;
+				setcolor(7);
+				system("pause");
+				system("cls");
+				goto BackMenu;
+			}
+
 		case 4:
 			  heapSortAscending(arr, count);
 			  setcolor(2);
@@ -111,11 +133,8 @@ void menu_utama(){
 			  goto BackMenu;
 			  break;
 		case 6:
-<<<<<<< HEAD
-			cout << "Data : ";
-=======
+
 		cout << "Data : ";
->>>>>>> Diaz
 			cin >> data;
 			if(checkNode(root_node, data)){
 				setcolor(2);
