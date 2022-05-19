@@ -107,15 +107,20 @@ void heapSortAscending(int arr[], int n) {
 }
 
 void DeleteArray(int *arr,int data,int count){
-		int *arr_tmp;		
+		int *arr_tmp;
+		arr_tmp = (int *) malloc(count);		
+		for(int c = 0;c<count;c++){
+			arr_tmp[c] = arr[c];
+		}
+	
+			arr = (int *) realloc(arr, count);
 	 for(int i=0;i<count;i++){
-	    	if(arr[i] == data){			        
-				        for(int c = i; c < count-1; c++)
-				        arr[c] = arr[c+1];		
-					    printf("\n\nResultant array is: ");
-					    for(int c = 0; c < count-1; c++) 
-					        printf("%d  ", arr[c]);
-					        arr = (int *) realloc(arr, count);
+	    	if(arr_tmp[i] == data){			        
+	    				
+				        for(int c = i; c < count-1; c++){
+				        arr[c] = arr_tmp[c+1];							    	
+						}
+						count--;				        
 			}else{
 				printf("");			
 			}
@@ -230,18 +235,3 @@ void setcolor(unsigned short color){
 	HANDLE hCon = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hCon,color);
 }
-
-bool checkNode(struct node *root, int key){
-	if(root == NULL) return false;
-	
-	if(root->data == key) return true;
-	
-	bool res1 = checkNode(root->left, key);
-	
-	if(res1) return true;
-	
-	bool res2 = checkNode(root->right, key);
-	
-	return res2;
-}
-

@@ -96,11 +96,11 @@ void menu_utama(){
 			if(checkNode(root_node, data)){
 				root_node = deleteNode(root_node, data);
 				DeleteArray(arr,data,count);
-	//			system("cls");
-				system("pause");
+				system("cls");				
 				setcolor(2);		
 				cout << "DELETE NODE " << endl;
 				setcolor(7);	
+				count--;
 				goto BackMenu;
 				break;
 			}else{
