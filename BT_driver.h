@@ -28,5 +28,8 @@ struct node* deleteNode(struct node* root, int key);
 struct node* minValueNode(struct node* node);
 void setcolor(unsigned short color);
 bool checkNode(struct node *root, int key);
+void randomize();
+//struct node* read_randomize_file(struct node *root);
+//int* read_randomize_file();
 
 #endif

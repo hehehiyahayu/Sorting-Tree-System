@@ -3,6 +3,7 @@
 #include "main.h"
 #include "BT_driver.h"
 #include <windows.h>
+#include <fstream>
 using namespace std;
 
 
@@ -13,8 +14,10 @@ void menu_list(){
 	cout << "1. Insert\n";
 	cout << "2. Delete Tree\n";
 	cout << "3. Delete Node\n";
-	cout << "4. HeapSort\n";
+	cout << "4. Min HeapSort\n";
+	cout << "5. Max HeapSort\n";
 	cout << "6. Check Nilai Tree\n";
+	cout << "7. Randomize\n";
 	cout << "\n\n";
 	cout << "Tree Data : \n\n";
 	
@@ -87,7 +90,7 @@ void menu_utama(){
 			setcolor(2);		
 			cout << "TREE CLEARED !! \n" << endl;
 			setcolor(7);		
-			data = NULL;
+			data = 0;
 			menu_utama();
 			break;
 		case 3:	
@@ -149,7 +152,30 @@ void menu_utama(){
 			system("cls");
 			goto BackMenu;
 			break;
-		
+		case 7:{
+			int array[10];
+			int loop = 0;
+			int num;
+			
+			randomize();
+			
+			ifstream myFile("temp.txt");
+			if(myFile.is_open()){
+				while(myFile >> num){
+					array[loop] = num;
+					root_node = insertNode(root_node, array[loop]);
+					loop++;
+				}
+			}else{
+				cout << "Tidak bisa membuka file" << endl;
+				system("PAUSE");
+			}
+			
+			system("pause");
+			system("cls");
+			goto BackMenu;
+		}
+			break;
 		default:
 			system("CLS");
 			setcolor(4);

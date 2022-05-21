@@ -2,6 +2,9 @@
 #include "BT_driver.h"
 #include <windows.h>
 #include <stdio.h>
+#include <fstream>
+#include <ctime>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -75,6 +78,7 @@ void swap(int *a, int *b) {
 
   *b = temp;
 }
+
 void heapifyAscending(int arr[], int n, int i) {
   // Find largest among root, left child and right child
   int largest = i;
@@ -235,3 +239,67 @@ void setcolor(unsigned short color){
 	HANDLE hCon = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hCon,color);
 }
+
+void randomize(){
+  // randomGenerator();
+  #define SIZE 10
+  int array[SIZE];
+  srand(time(NULL));
+  int number;
+  int index = 0;
+
+  while (index < SIZE) {
+      number = rand() % 100;
+      for (int i = 0; i < SIZE; i++) {
+          if (array[i] == number) {
+              number = rand() % 100;
+              i = 0;
+          }
+      }
+      array[index] = number;
+      index++;
+  }
+
+    ofstream file("temp.txt");
+
+    if(file.is_open()){
+      srand(time(0));
+      for(int i = 0; i < SIZE; i++){
+        int n = sizeof(array) / sizeof(array[0]);
+//        sort(array, array + n, greater<int>());
+        file << array[i] << endl;
+      }
+    }
+    file.close();
+
+}
+
+//int* read_randomize_file(){
+////struct node* read_randomize_file(struct node *root){
+//  int array[10];
+//  int loop = 0;
+//  int num;
+////  int temp;
+//  ifstream myFile("temp.txt");
+//  if(myFile.is_open()){
+//    while(myFile >> num){
+//      array[loop] = num;
+////      cout << array[loop] << endl;
+////	  insertNode(root, array[loop]);
+//      loop++;
+//    }
+//  }else{
+//    cout << "can't open file" << endl;
+//    system("PAUSE");
+//  }
+//  
+////  for(loop = 0; loop < 10; loop++){
+////  	cout << array[loop] << endl;
+//////  	return insertNode(root, array[loop]);
+////  	root = insertNode(root, array[loop]);
+//////  	return root;
+////  }
+//  
+//  return array;
+//  
+//}
