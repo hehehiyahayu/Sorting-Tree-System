@@ -152,19 +152,18 @@ void menu_utama(){
 			system("cls");
 			goto BackMenu;
 			break;
-		case 7:{
-//			int array[10];
-			int loop = 0;
-			int num;
-			
+		case 7:{			
+			int num;			
 			randomize();
 			
 			ifstream myFile("temp.txt");
 			if(myFile.is_open()){
-				while(myFile >> num){
-					arr[loop] = num;
-					root_node = insertNode(root_node, arr[loop]);
-					loop++;
+				while(myFile >> num){	
+					count++;				
+					arr = (int *) realloc(arr, count);
+					arr[count-1] = num;
+					root_node = insertNode(root_node, arr[count-1]);
+
 				}
 			}else{
 				cout << "Tidak bisa membuka file" << endl;
