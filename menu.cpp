@@ -3,6 +3,7 @@
 #include "main.h"
 #include "BT_driver.h"
 #include <windows.h>
+#include <fstream>
 using namespace std;
 
 
@@ -13,8 +14,10 @@ void menu_list(){
 	cout << "1. Insert\n";
 	cout << "2. Delete Tree\n";
 	cout << "3. Delete Node\n";
-	cout << "4. HeapSort\n";
+	cout << "4. Min HeapSort\n";
+	cout << "5. Max HeapSort\n";
 	cout << "6. Check Nilai Tree\n";
+	cout << "7. Randomize\n";
 	cout << "\n\n";
 	cout << "Tree Data : \n\n";
 	
@@ -25,8 +28,10 @@ void menu_utama(){
 	int data = 0;
 	int inp;
 	int count = 0; //jumlah total array
-	int arr[100];		//array
 
+	int *arr;		//array
+	arr = (int *) malloc(count);
+	
 	BackMenu:
 	menu_list();
 	printTree(root_node);
@@ -41,8 +46,7 @@ void menu_utama(){
 			  setcolor(2);
 			  printf("MAX HEAP SORT : ");
 			  printArray(arr, count);
-			  setcolor(7);
-			  
+			  setcolor(7);			  
 	cout << "\n\nYour Choice : ";		
 	scanf("%d",&inp);
 //	fflush(stdin);
@@ -51,7 +55,7 @@ void menu_utama(){
 // 			printf("%d",count);
  			while(data != 100){
 			cout << "Data : ";
-			cin >> data ;
+			cin >> data ;				
 			if(checkNode(root_node, data)){
 				setcolor(4);
 				cout << "Data sudah ada di dalam tree" << endl;
@@ -59,9 +63,18 @@ void menu_utama(){
 				system("pause");
 				system("cls");
 				goto BackMenu;
+			}else if(data == 0){
+				setcolor(4);
+				cout << "Data tidak boleh 0" << endl;
+				setcolor(7);
+				system("pause");
+				system("cls");
+				fflush(stdin);
+				goto BackMenu;
 			}else{
-				arr[count] = data;			
-				count++;
+			count++;
+			arr = (int *) realloc(arr, count);
+			arr[count-1] = data;		
 				if(root_node == NULL){
 					root_node = insertNode(root_node, data);
 				}else{
@@ -77,7 +90,7 @@ void menu_utama(){
 			setcolor(2);		
 			cout << "TREE CLEARED !! \n" << endl;
 			setcolor(7);		
-			data = NULL;
+			data = 0;
 			menu_utama();
 			break;
 		case 3:	
@@ -86,11 +99,11 @@ void menu_utama(){
 			if(checkNode(root_node, data)){
 				root_node = deleteNode(root_node, data);
 				DeleteArray(arr,data,count);
-	//			system("cls");
-				system("pause");
+				system("cls");				
 				setcolor(2);		
 				cout << "DELETE NODE " << endl;
 				setcolor(7);	
+				count--;
 				goto BackMenu;
 				break;
 			}else{
@@ -123,7 +136,8 @@ void menu_utama(){
 			  goto BackMenu;
 			  break;
 		case 6:
-			cout << "Data : ";
+
+		cout << "Data : ";
 			cin >> data;
 			if(checkNode(root_node, data)){
 				setcolor(2);
@@ -138,7 +152,29 @@ void menu_utama(){
 			system("cls");
 			goto BackMenu;
 			break;
-		
+		case 7:{			
+			int num;			
+			randomize();
+			
+			ifstream myFile("temp.txt");
+			if(myFile.is_open()){
+				while(myFile >> num){	
+					count++;				
+					arr = (int *) realloc(arr, count);
+					arr[count-1] = num;
+					root_node = insertNode(root_node, arr[count-1]);
+
+				}
+			}else{
+				cout << "Tidak bisa membuka file" << endl;
+				system("PAUSE");
+			}
+			
+			system("pause");
+			system("cls");
+			goto BackMenu;
+		}
+			break;
 		default:
 			system("CLS");
 			setcolor(4);

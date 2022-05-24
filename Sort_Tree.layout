@@ -1,28 +1,58 @@
 [Editor_0]
-CursorCol=20
-CursorRow=1
+<<<<<<< HEAD
+CursorCol=1
+CursorRow=9
 TopLine=1
 LeftChar=1
 [Editors]
-Order=0,2,1,4
-Focused=4
+Order=0,2,1,4,3
+Focused=3
 [Editor_1]
+CursorCol=20
+CursorRow=13
+TopLine=7
+=======
 CursorCol=1
-CursorRow=109
-TopLine=32
+CursorRow=9
+TopLine=1
+LeftChar=1
+[Editors]
+Order=0,2,1,4,3
+Focused=1
+[Editor_1]
+CursorCol=7
+CursorRow=108
+TopLine=96
+>>>>>>> Diaz
 LeftChar=1
 [Editor_2]
 CursorCol=1
-CursorRow=13
+CursorRow=9
 TopLine=1
 LeftChar=1
 [Editor_3]
+<<<<<<< HEAD
 CursorCol=4
 CursorRow=305
 TopLine=267
+=======
+CursorCol=17
+<<<<<<< HEAD
+CursorRow=155
+TopLine=128
+>>>>>>> main
 LeftChar=1
 [Editor_4]
-CursorCol=6
-CursorRow=24
-TopLine=1
+CursorCol=21
+CursorRow=12
+TopLine=4
+=======
+CursorRow=217
+TopLine=205
+LeftChar=1
+[Editor_4]
+CursorCol=39
+CursorRow=20
+TopLine=7
+>>>>>>> Diaz
 LeftChar=1
