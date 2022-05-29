@@ -153,26 +153,36 @@ void menu_utama(){
 			goto BackMenu;
 			break;
 		case 7:{			
-			int num;			
-			randomize();
-			
-			ifstream myFile("temp.txt");
-			if(myFile.is_open()){
-				while(myFile >> num){	
-					count++;				
-					arr = (int *) realloc(arr, count);
-					arr[count-1] = num;
-					root_node = insertNode(root_node, arr[count-1]);
-
-				}
-			}else{
-				cout << "Tidak bisa membuka file" << endl;
+			int num;
+			if(root_node != NULL){
+				setcolor(4);
+				cout << "Tree harus di kosongkan terlebih dahulu untuk melakukan randomize" << endl;
+				setcolor(7);
 				system("PAUSE");
-			}
+				system("CLS");
+				goto BackMenu;
+			}else{
+				randomize();
 			
-			system("pause");
-			system("cls");
-			goto BackMenu;
+				ifstream myFile("temp.txt");
+				if(myFile.is_open()){
+					while(myFile >> num){	
+						count++;				
+						arr = (int *) realloc(arr, count);
+						arr[count-1] = num;
+						root_node = insertNode(root_node, arr[count-1]);
+	
+					}
+				}else{
+					cout << "Tidak bisa membuka file" << endl;
+					system("PAUSE");
+				}
+				
+				system("pause");
+				system("cls");
+				goto BackMenu;
+			}
+
 		}
 			break;
 		default:
